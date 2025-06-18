@@ -1,0 +1,8 @@
+{
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "file:/**/*.csv": "jupyter-data-wrangler"
+    },
+    "dataWrangler.defaultViewingFilterOptions": "advanced",
+    "dataWrangler.experiments.autoDetectCsvDelimiter": true
+}
