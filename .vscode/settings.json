@@ -5,4 +5,10 @@
     },
     "dataWrangler.defaultViewingFilterOptions": "advanced",
     "dataWrangler.experiments.autoDetectCsvDelimiter": true
+   "github.copilot.chat.commitMessageGeneration.instructions": [
+    
+    {
+        "text": "Use the following instructions to generate commit messages for your changes. The commit message should be concise, descriptive, and follow the conventional commit format. Include a brief description of what was changed. Use Emojis."
+    }
+   ]
 }
