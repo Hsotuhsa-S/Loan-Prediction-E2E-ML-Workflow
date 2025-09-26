@@ -17,3 +17,6 @@ statsmodels>=0.13.0
 # Jupyter and Development
 jupyter>=1.0.0
 ipykernel>=6.0.0
+
+# Web App Deployment
+streamlit>=1.10.0
