@@ -27,17 +27,11 @@
 │   └── loanApproval/
 │       ├── loan_data.csv                  # Raw dataset
 │       ├── cleanLoanApprovalData.csv      # Cleaned dataset
-│       └── Loan_RandomForest_pipeline.pkl # Preprocessing pipeline
+│       
 ├── model/
 │   └── loanApproval/
 │       └── Loan_RandomForest_model.pkl    # Trained model
-├── src/
-│   └── utils/                             # Utility modules
-│       ├── feature_selection.py
-│       ├── model_factory.py
-│       ├── model_utils.py
-│       └── preprocessing.py
-└── docs/                                  # Documentation
+
 ```
 
 ## 🔧 Technologies & Libraries Used
