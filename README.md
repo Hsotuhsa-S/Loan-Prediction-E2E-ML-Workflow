@@ -5,7 +5,7 @@
 ## 🎯 Project Summary
 
 **Objective**: Predict loan approval decisions using applicant and loan characteristics  
-**Achievement**: Compared Random Forest vs Gradient Boosting. Developed and deployed a Random Forest classifier achieving **89% ROC-AUC** with interactive web interface
+**Achievement**: Compared Random Forest vs Gradient Boosting. Developed and deployed a Random Forest classifier achieving **98% ROC-AUC** with interactive web interface
 
 ### Key Tasks:
 - ✅ **Data Processing**: Cleaned 45K loan records, handled missing values, engineered features
