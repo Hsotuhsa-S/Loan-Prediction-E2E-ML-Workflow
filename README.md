@@ -8,11 +8,12 @@
 **Achievement**: Compared Random Forest vs Gradient Boosting. Developed and deployed a Random Forest classifier achieving **98% ROC-AUC** with interactive web interface
 
 ### Key Tasks:
-- ✅ **Data Processing**: Cleaned 45K loan records, handled missing values, engineered features
+- ✅ **Data Processing**: Cleaned 45000 loan records, handled missing values
 - ✅ **Model Development**: Compared Random Forest vs Gradient Boosting with hyperparameter optimization  
 - ✅ **Performance**: Achieved 98% ROC-AUC with robust cross-validation
 - ✅ **Production Deployment**: Built interactive Streamlit web app for real-time predictions
-- ✅ **Business Impact**: Identified credit score and income as top predictors for loan decisions
+- ✅ **Business Impact**: Previous loan defaults, loan interest rate and loan percent income as top predictors for loan decisions.
+  The model reduces loan default risk by accurately identifying 89.2% of approved good customers, while capturing 77.5% of creditworthy customers, improving portfolio quality and minimizing losses.
 
 ## 📁 Project Structure
 
@@ -39,7 +40,6 @@
 ### Core Stack
 - **pandas**  - Data manipulation and analysis
 - **numpy**  - Numerical computing
-- **scipy**  - Scientific computing
 
 ### Machine Learning
 - **scikit-learn**  - Machine learning algorithms and utilities
@@ -98,9 +98,9 @@ pip install -r requirements.txt
 
 ### Key Discoveries:
 - **Top Predictors**: 
-    - **Previous loan defaults (combined importance: ~42%) : Consistent Across Models. Person's previous loan default history is one of the strongest indicators of future loan repayment behavior.
-    - **loan interest rate (13%) :  Higher interest rates often correlate with higher-risk loans, making this an important predictor.
-    - **loan percent income (~15%) : The ratio of loan amount to income directly relates to an applicant's ability to repay.
+    - **Previous loan defaults** (combined importance: ~42%) : Consistent Across Models. Person's previous loan default history is one of the strongest indicators of future loan repayment behavior.
+    - **loan interest rate** (13%) :  Higher interest rates often correlate with higher-risk loans, making this an important predictor.
+    - **loan percent income** (~15%) : The ratio of loan amount to income directly relates to an applicant's ability to repay.
     
 - **Model Stability**: CV standard deviation <0.02 across all metrics
 
