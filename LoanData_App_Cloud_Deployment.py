@@ -377,24 +377,40 @@ def main():
     # Simple prediction interface (optimized for cloud)
     st.header("📝 Loan Application")
     
-    # Simplified input form
-    col1, col2 = st.columns(2)
+    # Personal Information Section
+    st.markdown("### 👤 Personal Information")
+    col1, col2, col3 = st.columns(3)
     
     with col1:
         person_age = st.number_input("Age", min_value=18, max_value=100, value=30)
-        person_income = st.number_input("Annual Income ($)", min_value=0, value=50000)
-        person_emp_exp = st.number_input("Employment Experience (years)", min_value=0, value=5)
-        loan_amnt = st.number_input("Loan Amount ($)", min_value=0, value=10000)
-        loan_int_rate = st.number_input("Interest Rate (%)", min_value=0.0, value=10.0)
-        credit_score = st.number_input("Credit Score", min_value=300, max_value=850, value=650)
-    
-    with col2:
         person_gender = st.selectbox("Gender", ["Male", "Female"])
+    with col2:
         person_education = st.selectbox("Education", ["High School", "Bachelor", "Master", "PhD"])
+        person_income = st.number_input("Annual Income ($)", min_value=0, value=50000)
+    with col3:
+        person_emp_exp = st.number_input("Employment Experience (years)", min_value=0, value=5)
         person_home_ownership = st.selectbox("Home Ownership", ["RENT", "OWN", "MORTGAGE", "OTHER"])
+
+    # Loan Information Section
+    st.markdown("### 💰 Loan Details")
+    loan_col1, loan_col2 = st.columns(2)
+    
+    with loan_col1:
+        loan_amnt = st.number_input("Loan Amount ($)", min_value=0, value=10000)
         loan_intent = st.selectbox("Loan Purpose", ["PERSONAL", "EDUCATION", "MEDICAL", "VENTURE"])
+    with loan_col2:
+        loan_int_rate = st.number_input("Interest Rate (%)", min_value=0.0, value=10.0)
         loan_percent_income = st.slider("Loan as % of Income", 0.0, 1.0, 0.2)
+
+    # Credit Information Section
+    st.markdown("### 📊 Credit Information")
+    credit_col1, credit_col2, credit_col3 = st.columns(3)
+    
+    with credit_col1:
+        credit_score = st.number_input("Credit Score", min_value=300, max_value=850, value=650)
+    with credit_col2:
         cb_person_cred_hist_length = st.number_input("Credit History Length (years)", min_value=0, value=10)
+    with credit_col3:
         previous_loan_defaults_on_file = st.selectbox("Previous Defaults", ["No", "Yes"])
     
     # Prediction
