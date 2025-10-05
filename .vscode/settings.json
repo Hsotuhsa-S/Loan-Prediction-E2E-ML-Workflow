@@ -4,11 +4,32 @@
         "file:/**/*.csv": "jupyter-data-wrangler"
     },
     "dataWrangler.defaultViewingFilterOptions": "advanced",
-    "dataWrangler.experiments.autoDetectCsvDelimiter": true
+    "dataWrangler.experiments.autoDetectCsvDelimiter": true,
+
+    // GitHub Copilot Configuration
    "github.copilot.chat.commitMessageGeneration.instructions": [
-    
     {
         "text": "Use the following instructions to generate commit messages for your changes. The commit message should be concise, descriptive, and follow the conventional commit format. Include a brief description of what was changed. Use Emojis."
     }
-   ]
+   ],
+
+   // Python Configuration
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+    "python.terminal.activateEnvironment": true,
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/.venv/Lib/site-packages"
+    ],
+    
+    // Code Style & Formatting
+    "python.formatting.provider": "black",
+    "python.linting.enabled": true,
+    
+    // Docstring Configuration
+    "autoDocstring.docstringFormat": "google",
+    "autoDocstring.startOnNewLine": true,
+    
+    // Jupyter Configuration
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "jupyter.generateSVGPlots": true,
+    
 }
