@@ -100,94 +100,53 @@ mode = st.radio("Choose input method:", ["Manual entry", "CSV upload"])
 # Manual entry
 # =============================
 if mode == "Manual entry":
-    st.subheader("Enter loan application details")
-    
-    # Group features into logical categories
-    personal_features = ["person_age", "person_gender", "person_education", 
-                         "person_income", "person_emp_exp", "person_home_ownership"]
-    loan_features = ["loan_amnt", "loan_intent", "loan_int_rate", "loan_percent_income"]
-    credit_features = ["cb_person_cred_hist_length", "credit_score", "previous_loan_defaults_on_file"]
-    
     input_data = {}
     
     # Personal Information Section
     st.markdown("### 👤 Personal Information")
-    personal_cols = st.columns(3)
-    for i, feature in enumerate(personal_features):
-        with personal_cols[i % 3]:
-            if df_sample is not None and df_sample[feature].dtype == "object":  # categorical
-                choices = df_sample[feature].dropna().unique().tolist()
-                input_data[feature] = st.selectbox(feature, choices)
-            elif df_sample is not None:  # numeric with sample data
-                default_val = float(df_sample[feature].median())
-                input_data[feature] = st.number_input(feature, value=default_val)
-            else:  # fallback when no sample data
-                if feature in ["person_gender", "person_education", "person_home_ownership"]:
-                    fallback_choices = {
-                        "person_gender": ["Male", "Female"],
-                        "person_education": ["High School", "Bachelor", "Master", "PhD"],
-                        "person_home_ownership": ["RENT", "OWN", "MORTGAGE", "OTHER"],
-                    }
-                    input_data[feature] = st.selectbox(feature, fallback_choices.get(feature, ["Option1", "Option2"]))
-                else:
-                    fallback_defaults = {
-                        "person_age": 30.0, "person_income": 50000.0, "person_emp_exp": 5.0,
-                    }
-                    default_val = fallback_defaults.get(feature, 0.0)
-                    input_data[feature] = st.number_input(feature, value=default_val)
+    col1, col2, col3 = st.columns(3)
     
-    # Loan Information Section
-    st.markdown("### 💰 Loan Information")
-    loan_cols = st.columns(2)
-    for i, feature in enumerate(loan_features):
-        with loan_cols[i % 2]:
-            if df_sample is not None and df_sample[feature].dtype == "object":  # categorical
-                choices = df_sample[feature].dropna().unique().tolist()
-                input_data[feature] = st.selectbox(feature, choices)
-            elif df_sample is not None:  # numeric with sample data
-                default_val = float(df_sample[feature].median())
-                input_data[feature] = st.number_input(feature, value=default_val)
-            else:  # fallback when no sample data
-                if feature == "loan_intent":
-                    fallback_choices = {
-                        "loan_intent": ["PERSONAL", "EDUCATION", "MEDICAL", "VENTURE", "HOMEIMPROVEMENT", "DEBTCONSOLIDATION"],
-                    }
-                    input_data[feature] = st.selectbox(feature, fallback_choices.get(feature, ["Option1", "Option2"]))
-                else:
-                    fallback_defaults = {
-                        "loan_amnt": 10000.0, "loan_int_rate": 10.0, "loan_percent_income": 0.2,
-                    }
-                    default_val = fallback_defaults.get(feature, 0.0)
-                    input_data[feature] = st.number_input(feature, value=default_val)
+    with col1:
+        input_data["person_age"] = st.number_input("Age", min_value=18, max_value=100, value=30)
+        input_data["person_gender"] = st.selectbox("Gender", ["Male", "Female"])
+    
+    with col2:
+        input_data["person_education"] = st.selectbox("Education", ["High School", "Bachelor", "Master", "PhD"])
+        input_data["person_income"] = st.number_input("Annual Income ($)", min_value=0, value=50000)
+    
+    with col3:
+        input_data["person_emp_exp"] = st.number_input("Employment Experience (years)", min_value=0, value=5)
+        input_data["person_home_ownership"] = st.selectbox("Home Ownership", ["RENT", "OWN", "MORTGAGE", "OTHER"])
+    
+    # Loan Details Section
+    st.markdown("### 💰 Loan Details")
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        input_data["loan_amnt"] = st.number_input("Loan Amount ($)", min_value=0, value=10000)
+        input_data["loan_intent"] = st.selectbox("Loan Purpose", ["PERSONAL", "EDUCATION", "MEDICAL", "VENTURE"])
+    
+    with col2:
+        input_data["loan_int_rate"] = st.number_input("Interest Rate (%)", min_value=0.0, value=10.0)
+        input_data["loan_percent_income"] = st.slider("Loan as % of Income", 0.0, 1.0, 0.2)
     
     # Credit Information Section
     st.markdown("### 📊 Credit Information")
-    credit_cols = st.columns(3)
-    for i, feature in enumerate(credit_features):
-        with credit_cols[i % 3]:
-            if df_sample is not None and df_sample[feature].dtype == "object":  # categorical
-                choices = df_sample[feature].dropna().unique().tolist()
-                input_data[feature] = st.selectbox(feature, choices)
-            elif df_sample is not None:  # numeric with sample data
-                default_val = float(df_sample[feature].median())
-                input_data[feature] = st.number_input(feature, value=default_val)
-            else:  # fallback when no sample data
-                if feature == "previous_loan_defaults_on_file":
-                    fallback_choices = {
-                        "previous_loan_defaults_on_file": ["Yes", "No"]
-                    }
-                    input_data[feature] = st.selectbox(feature, fallback_choices.get(feature, ["Option1", "Option2"]))
-                else:
-                    fallback_defaults = {
-                        "cb_person_cred_hist_length": 10.0, "credit_score": 650.0
-                    }
-                    default_val = fallback_defaults.get(feature, 0.0)
-                    input_data[feature] = st.number_input(feature, value=default_val)
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        input_data["credit_score"] = st.number_input("Credit Score", min_value=300, max_value=850, value=650)
+    
+    with col2:
+        input_data["cb_person_cred_hist_length"] = st.number_input("Credit History Length (years)", min_value=0, value=10)
+    
+    with col3:
+        input_data["previous_loan_defaults_on_file"] = st.selectbox("Previous Defaults", ["No", "Yes"])
     
     # Prediction button centered
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        if st.button("Predict", use_container_width=True):
+        if st.button("🤖 Predict Loan Approval", use_container_width=True):
             input_df = pd.DataFrame([input_data])
             preds, probs = predict_df(model, input_df)
             label = LABEL_MAP.get(preds[0], preds[0])
